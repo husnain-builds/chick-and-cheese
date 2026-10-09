@@ -1,69 +1,79 @@
-import Image from "next/image";
+import Link from "next/link";
+import { HeroSlider, PromoStrip } from "./components/site";
+import { menuSections } from "./lib/menu";
+
+const favorites = [
+  { name: "Zinger Burger", detail: "Our signature crispy, spicy chicken.", price: 450, photo: "photo-1568901346375-23c9450c58cd", tag: "The original" },
+  { name: "Chicken Supreme", detail: "A loaded pizza made for sharing.", price: 650, photo: "photo-1571407970349-bc81e7e96d47", tag: "Crowd favorite" },
+  { name: "Arabic Wrap", detail: "Big, bold shawarma flavor, wrapped up.", price: 550, photo: "photo-1626700051175-6818013e1d4f", tag: "Made fresh" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <PromoStrip />
+      <HeroSlider />
+
+      <section className="section favorites-section" id="favorites">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow"><span className="eyebrow-dot" /> THE CROWD PLEASERS</span>
+            <h2>Good things.<br /><span>Great taste.</span></h2>
+          </div>
+          <Link className="text-link" href="/menu">Explore our full menu <span aria-hidden="true">↗</span></Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="favorites-grid">
+          {favorites.map((item, index) => (
+            <article className="favorite-card" key={item.name} style={{ animationDelay: `${index * 100}ms` }}>
+              <Link className="favorite-image" href="/menu" aria-label={`Explore our ${item.name}`} style={{ backgroundImage: `url("https://images.unsplash.com/${item.photo}?auto=format&fit=crop&w=820&q=80")` }}>
+                <span className="visually-hidden">{item.name}</span>
+                <span className="favorite-tag">{item.tag}</span>
+              </Link>
+              <div className="favorite-details">
+                <div><h3>{item.name}</h3><p>{item.detail}</p></div>
+                <span className="favorite-price">Rs. {item.price}</span>
+              </div>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="deal-feature">
+        <div className="deal-copy">
+          <span className="eyebrow eyebrow-light"><span className="eyebrow-dot" /> MORE CRAVINGS, LESS SPENDING</span>
+          <h2>Made for<br /><span>sharing. Or not.</span></h2>
+          <p>Bring your people. Bring your appetite. Our famous meal deals bring all the good stuff to one table.</p>
+          <Link className="button button-cream" href="/deals">See what’s on offer <span aria-hidden="true">↗</span></Link>
+        </div>
+        <div className="deal-image" role="img" aria-label="A table full of a freshly made burger, fries and pizza" />
+        <span className="deal-stamp"><span>GOOD<br />FOOD.<br />GOOD<br />MOOD.</span></span>
+      </section>
+
+      <section className="section menu-preview" id="menu">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow"><span className="eyebrow-dot" /> SOMETHING FOR EVERY CRAVING</span>
+            <h2>Come hungry.<br /><span>Pick your happy.</span></h2>
+          </div>
+        </div>
+        <div className="category-grid">
+          {menuSections.map((section, index) => (
+            <Link className={`category-tile category-tile-${index % 4}`} href="/menu" key={section.slug}>
+              <span className="category-number">0{index + 1}</span>
+              <span className="category-name">{section.name}</span>
+              <span className="category-count">{section.items.length} things to love</span>
+              <span className="category-arrow" aria-hidden="true">↗</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="visit-banner">
+        <span className="eyebrow eyebrow-light"><span className="eyebrow-dot" /> YOUR NEXT GOOD MEAL IS CALLING</span>
+        <h2>Made fresh.<br /><span>Made to make your day.</span></h2>
+        <Link className="button button-cream" href="/contact">Come say hello <span aria-hidden="true">↗</span></Link>
+        <div className="visit-sunburst" aria-hidden="true">✳</div>
+      </section>
+    </>
   );
 }
