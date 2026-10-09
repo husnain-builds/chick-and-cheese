@@ -16,10 +16,11 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [openForPath, setOpenForPath] = useState<string | null>(null);
   const menuOpen = openForPath === pathname;
+  const closeNav = () => setOpenForPath(null);
 
   return (
     <header className="site-header">
-      <Link className="brand" href="/" aria-label="Chick’n Cheese — home">
+      <Link className="brand" href="/" aria-label="Chick’n Cheese — home" onClick={closeNav}>
         <span className="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 40 40" fill="none">
             <path d="M5 19.5h30a3 3 0 0 1 3 3v2.2H2v-2.2a3 3 0 0 1 3-3Z" fill="currentColor" />
@@ -38,11 +39,11 @@ export function SiteHeader() {
 
       <nav className={`main-navigation${menuOpen ? " navigation-open" : ""}`} id="primary-navigation" aria-label="Main navigation">
         {navigation.map((item) => (
-          <Link className={`nav-link${pathname === item.href ? " nav-link-active" : ""}`} href={item.href} key={item.href} aria-current={pathname === item.href ? "page" : undefined}>
+          <Link className={`nav-link${pathname === item.href ? " nav-link-active" : ""}`} href={item.href} key={item.href} aria-current={pathname === item.href ? "page" : undefined} onClick={closeNav}>
             {item.label}
           </Link>
         ))}
-        <Link className="nav-order-button" href="/contact">Let’s eat <span aria-hidden="true">↗</span></Link>
+        <Link className="nav-order-button" href="/contact" onClick={closeNav}>Let’s eat <span aria-hidden="true">↗</span></Link>
       </nav>
     </header>
   );
@@ -139,7 +140,7 @@ export function SiteFooter() {
           <p>Fresh flavors. Crispy bites. Cheesy delights.</p>
         </div>
         <div className="footer-links"><span className="footer-label">TAKE A LOOK</span><Link href="/menu">Our menu</Link><Link href="/deals">Good deals</Link><Link href="/about">Our story</Link></div>
-        <div className="footer-links"><span className="footer-label">SAY HELLO</span><Link href="/contact">Find us in Mianwali</Link><a href="tel:+923155505187">0315 550 5187</a><a href="https://wa.me/923155505187" target="_blank" rel="noopener noreferrer">WhatsApp us ↗</a></div>
+        <div className="footer-links"><span className="footer-label">SAY HELLO</span><Link href="/contact">Our Lahore branches</Link><a href="tel:+923155505187">0315 550 5187</a><a href="https://wa.me/923155505187" target="_blank" rel="noopener noreferrer">WhatsApp us ↗</a></div>
         <div className="footer-note"><span className="footer-label">THE CHICK’N CHEESE RULE</span><p>Always get the extra fries.</p><span className="footer-note-star" aria-hidden="true">✳</span></div>
       </div>
       <div className="footer-bottom"><span>Chick’n Cheese. Made with a little extra love.</span><Link href="/contact">Come hungry <span aria-hidden="true">↗</span></Link></div>

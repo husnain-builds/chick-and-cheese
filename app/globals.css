@@ -96,6 +96,7 @@ button {
   display: flex;
   flex-direction: column;
   color: var(--ink);
+  font-family: var(--font-menu-display);
   font-size: 15px;
   font-weight: 900;
   letter-spacing: 1.7px;
@@ -114,7 +115,11 @@ button {
   position: relative;
   padding: 9px 0;
   color: #716b61;
-  font-size: 14px;
+  font-family: var(--font-menu-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
   transition: color 0.2s;
 }
 .nav-link:hover,
@@ -138,19 +143,28 @@ button {
   padding: 0 16px;
   color: white;
   background: var(--orange);
-  font-size: 11px;
-  font-weight: 700;
+  font-family: var(--font-menu-display);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition:
     background 0.2s,
-    transform 0.2s;
+    transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.2s;
 }
 .nav-order-button:hover,
 .button-orange:hover {
   background: var(--orange-deep);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgb(190 54 27 / 24%);
 }
 .nav-order-button span {
   font-size: 15px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.nav-order-button:hover span {
+  transform: translate(2px, -2px);
 }
 .mobile-menu-button {
   display: none;
@@ -250,12 +264,16 @@ button {
   justify-content: center;
   gap: 22px;
   padding: 0 18px;
-  font-size: 11px;
-  font-weight: 700;
+  font-family: var(--font-menu-display);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition:
     color 0.2s,
     background 0.2s,
-    transform 0.2s;
+    transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.2s;
 }
 .button-orange {
   color: #fff;
@@ -268,10 +286,26 @@ button {
 .button-cream:hover {
   color: var(--orange);
   background: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgb(37 33 25 / 12%);
 }
 .button span {
   font-size: 15px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.button:hover span {
+  transform: translateX(3px);
+}
+.button:active,
+.nav-order-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+.button:focus-visible,
+.nav-order-button:focus-visible,
+.text-link:focus-visible {
+  outline: 3px solid rgb(220 76 40 / 45%);
+  outline-offset: 4px;
 }
 .hero-food-note {
   color: #797468;
@@ -498,12 +532,16 @@ button {
   padding-bottom: 6px;
   border-bottom: 1px solid #d3cfc4;
   color: var(--ink);
-  font-size: 11px;
+  font-family: var(--font-menu-display);
+  font-size: 13px;
+  font-weight: 700;
   transition:
     color 0.2s,
-    border-color 0.2s;
+    border-color 0.2s,
+    gap 0.2s;
 }
 .text-link:hover {
+  gap: 17px;
   border-color: var(--orange);
   color: var(--orange);
 }
@@ -567,7 +605,7 @@ button {
 .favorite-details h3 {
   margin: 0;
   font-family: var(--font-menu-display);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 800;
 }
 .favorite-details p {
@@ -696,7 +734,7 @@ button {
 }
 .category-name {
   font-family: var(--font-menu-display);
-  font-size: 21px;
+  font-size: 23px;
   font-weight: 800;
 }
 .category-count {
@@ -836,12 +874,13 @@ button {
 
 .menu-jump {
   display: flex;
-  min-height: 48px;
+  min-height: 54px;
   align-items: center;
   justify-content: center;
   gap: clamp(13px, 3vw, 39px);
   overflow-x: auto;
-  padding: 10px 18px;
+  padding: 10px 22px;
+  background: #fffefa;
   border-bottom: 1px solid var(--line);
   scrollbar-width: none;
 }
@@ -852,17 +891,26 @@ button {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 5px;
+  gap: 7px;
   color: #746e62;
-  font-size: 10px;
-  transition: color 0.2s;
+  font-family: var(--font-menu-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s, transform 0.2s;
 }
 .menu-jump a:hover {
+  transform: translateY(-1px);
   color: var(--orange);
 }
 .menu-jump a > span {
   color: var(--orange);
   font-size: 10px;
+  transition: transform 0.2s;
+}
+.menu-jump a:hover > span {
+  transform: translateY(2px);
 }
 .menu-page-section {
   padding-top: 48px;
@@ -890,7 +938,7 @@ button {
 .menu-category-heading h2 {
   margin: 0;
   font-family: var(--font-menu-display);
-  font-size: 27px;
+  font-size: 29px;
   font-weight: 800;
   letter-spacing: -0.6px;
   text-transform: uppercase;
@@ -905,22 +953,42 @@ button {
 }
 .menu-items {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 50px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 .menu-item {
   display: flex;
   min-width: 0;
-  align-items: baseline;
-  gap: 8px;
-  padding: 11px 0 10px;
-  border-bottom: 1px dashed #e9e5db;
+  align-items: center;
+  gap: 12px;
+  min-height: 132px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: #fffefa;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.menu-item:hover {
+  transform: translateY(-2px);
+  border-color: rgb(220 76 40 / 35%);
+  box-shadow: 0 8px 20px rgb(37 33 25 / 6%);
+}
+.menu-item-image {
+  display: block;
+  width: 108px;
+  height: 108px;
+  flex: 0 0 108px;
+  object-fit: cover;
 }
 .menu-item-copy {
   display: flex;
   min-width: 0;
+  min-height: 105px;
   flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 5px;
 }
 .menu-item-name {
   display: inline-flex;
@@ -928,7 +996,7 @@ button {
   align-items: center;
   gap: 7px;
   font-family: var(--font-menu-body);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 }
 .menu-item-label {
@@ -944,19 +1012,13 @@ button {
   font-size: 9px;
   line-height: 1.5;
 }
-.menu-item-dots {
-  min-width: 6px;
-  flex: 1;
-  align-self: baseline;
-  margin-top: 7px;
-  border-bottom: 1px dotted #d6d0c4;
-}
 .menu-item-price {
   color: var(--orange);
   font-family: var(--font-menu-body);
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
+  margin-top: auto;
 }
 .menu-note {
   margin: 29px 0 0;
@@ -975,7 +1037,7 @@ button {
 .menu-cta > p {
   margin: 0;
   font-family: var(--font-menu-display);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 800;
 }
 
@@ -1051,7 +1113,7 @@ button {
 .deal-card h3 {
   margin: 5px 0 6px;
   font-family: var(--font-menu-display);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
 }
 .deal-card > p {
@@ -1215,7 +1277,7 @@ button {
 .about-values h3 {
   margin: 11px 0 7px;
   font-family: var(--font-menu-display);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
 }
 .about-values p {
@@ -1292,7 +1354,7 @@ a.contact-card:hover {
 }
 .contact-card-title {
   font-family: var(--font-menu-display);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 800;
 }
 .contact-card-detail {
@@ -1309,12 +1371,17 @@ a.contact-card:hover {
   color: var(--orange);
 }
 .contact-visit {
-  grid-column: 1 / -1;
-  min-height: 95px;
+  min-height: 150px;
   padding: 14px 15px;
 }
 .contact-visit .contact-card-detail {
-  max-width: 300px;
+  max-width: 100%;
+}
+.branch-address {
+  justify-content: flex-start;
+  color: #716b61;
+  font-size: 11px;
+  line-height: 1.7;
 }
 .contact-bottom {
   min-height: 303px;
@@ -1340,7 +1407,7 @@ a.contact-card:hover {
   margin: 11px 0 0;
   color: #b4b2a8;
   font-family: var(--font-menu-body);
-  font-size: 13px;
+  font-size: 14px;
 }
 .footer-links {
   display: flex;
@@ -1351,13 +1418,13 @@ a.contact-card:hover {
 .footer-label {
   margin-bottom: 4px;
   color: #b3a998;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.3px;
 }
 .footer-links > a {
   color: #efeee8;
-  font-size: 10px;
+  font-size: 14px;
   transition: color 0.2s;
 }
 .footer-links > a:hover,
@@ -1372,7 +1439,7 @@ a.contact-card:hover {
   max-width: 150px;
   margin: 6px 0;
   font-family: var(--font-menu-display);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1.4;
 }
@@ -1393,7 +1460,7 @@ a.contact-card:hover {
   padding: 16px 0 19px;
   border-top: 1px solid rgb(255 255 255 / 13%);
   color: #aaa99e;
-  font-size: 9px;
+  font-size: 11px;
 }
 .footer-bottom > a {
   color: #f1efe8;
@@ -1487,6 +1554,9 @@ a.contact-card:hover {
   }
   .page-hero-mark {
     right: 7%;
+  }
+  .menu-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1595,7 +1665,7 @@ a.contact-card:hover {
     min-height: 42px;
     gap: 14px;
     padding: 0 14px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .hero-food-note {
     font-size: 9px;
@@ -1667,7 +1737,7 @@ a.contact-card:hover {
     aspect-ratio: 1.45;
   }
   .favorite-details h3 {
-    font-size: 17px;
+    font-size: 19px;
   }
   .deal-feature {
     grid-template-columns: 1fr;
@@ -1708,7 +1778,7 @@ a.contact-card:hover {
     padding: 14px;
   }
   .category-name {
-    font-size: 18px;
+    font-size: 20px;
   }
   .category-number {
     top: 12px;
@@ -1758,9 +1828,12 @@ a.contact-card:hover {
   }
   .menu-jump {
     justify-content: flex-start;
-    gap: 21px;
+    gap: 24px;
     padding-right: 21px;
     padding-left: 21px;
+  }
+  .menu-jump a {
+    font-size: 10px;
   }
   .menu-page-section {
     padding-top: 28px;
@@ -1773,16 +1846,35 @@ a.contact-card:hover {
     margin-top: 23px;
   }
   .menu-category-heading h2 {
-    font-size: 24px;
+    font-size: 26px;
   }
   .menu-items {
     grid-template-columns: 1fr;
   }
   .menu-item {
-    padding: 10px 0 9px;
+    gap: 9px;
+    min-height: 104px;
+    padding: 8px;
+  }
+  .menu-item-image {
+    width: 76px;
+    height: 76px;
+    flex-basis: 76px;
+  }
+  .menu-item-copy {
+    min-height: 84px;
   }
   .menu-item-name {
-    font-size: 13px;
+    font-size: 14px;
+  }
+  .menu-item-description {
+    font-size: 9px;
+  }
+  .menu-item-label {
+    font-size: 7px;
+  }
+  .menu-item-price {
+    font-size: 11px;
   }
   .menu-cta {
     align-items: flex-start;
@@ -1806,7 +1898,7 @@ a.contact-card:hover {
     padding: 12px;
   }
   .deal-card h3 {
-    font-size: 17px;
+    font-size: 18px;
   }
   .deal-card > p {
     font-size: 8px;
@@ -1885,11 +1977,11 @@ a.contact-card:hover {
     padding-left: 15px;
   }
   .contact-card-title {
-    font-size: 19px;
+    font-size: 20px;
   }
   .contact-visit {
     grid-column: auto;
-    min-height: 106px;
+    min-height: 120px;
   }
   .contact-bottom {
     min-height: 258px;
@@ -1906,13 +1998,16 @@ a.contact-card:hover {
   .footer-links {
     gap: 10px;
   }
-  .footer-links > a {
+  .footer-label {
     font-size: 9px;
+  }
+  .footer-links > a {
+    font-size: 13px;
   }
   .footer-bottom {
     width: calc(100% - 42px);
     align-items: flex-start;
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
@@ -1935,7 +2030,7 @@ a.contact-card:hover {
     padding-left: 9px;
   }
   .deal-card h3 {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
