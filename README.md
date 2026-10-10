@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chick’n Cheese
 
-## Getting Started
+A modern, responsive restaurant website for Chick’n Cheese, built with Next.js App Router. The site showcases the restaurant’s menu and meal deals, introduces the brand, and helps guests contact or find its Lahore branches.
 
-First, run the development server:
+## Features
+
+- **Animated home page:** rotating hero slides feature burgers, pizza, and wraps, with manual controls and a pause/resume option.
+- **Menu browsing:** six food categories, image-led menu item cards, prices in Pakistani rupees, and in-page category navigation.
+- **Meal deals:** a dedicated page presenting the restaurant’s current deal selection and prices.
+- **About page:** restaurant story, values, and calls to action.
+- **Contact and branch details:** phone and WhatsApp links, plus the two branch addresses listed on the printed menu.
+- **Shared site navigation and footer:** consistent navigation and contact links across routes, including a responsive mobile menu.
+- **Responsive styling:** layouts adapt to desktop, tablet, and mobile viewports.
+- **Motion and accessibility considerations:** interactive controls have accessible names, and decorative/animated effects respect reduced-motion preferences.
+- **Page metadata:** route-level titles and descriptions, with shared site metadata and Open Graph details.
+
+## Routes
+
+| Route | Page |
+| --- | --- |
+| `/` | Home page, featured menu categories, food favorites, deals feature, and restaurant call to action |
+| `/menu` | Food menu with category links, product images, descriptions, and prices |
+| `/deals` | Meal deals and their prices |
+| `/about` | Brand story and restaurant values |
+| `/contact` | Phone, WhatsApp, and Lahore branch information |
+
+## Branches
+
+The contact page lists these locations, transcribed from the restaurant’s printed menu:
+
+- **DHA Rahbar:** Sector 2, Food Court Area, J-Block, Gate #4, Defence Road, Lahore.
+- **AWT Society:** B-Block Commercial, AWT Society, Adda Plot, Lahore.
+
+The contact page and footer also include the phone number and WhatsApp contact link currently configured by the site.
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org/) with the App Router
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS 4](https://tailwindcss.com/) with the app’s visual system implemented in `app/globals.css`
+- `next/font` for the Nunito Sans family
+
+## Project structure
+
+```text
+app/
+├── about/
+│   └── page.tsx          # Brand story and values
+├── components/
+│   └── site.tsx          # Shared header, hero slider, promo strip, and footer
+├── contact/
+│   └── page.tsx          # Contact details and branch addresses
+├── deals/
+│   └── page.tsx          # Deal listing
+├── lib/
+│   └── menu.ts           # Menu categories, items, prices, and deals
+├── menu/
+│   └── page.tsx          # Image-led menu page
+├── globals.css           # Global design system and responsive styles
+├── layout.tsx            # Root layout, fonts, metadata, shared site chrome
+└── page.tsx               # Home page
+main/
+├── IMG_3730.jpeg          # Printed menu reference
+└── IMG_3731.jpeg          # Printed menu reference
+```
+
+## Getting started
+
+### Requirements
+
+- Node.js compatible with the installed Next.js version
+- npm (or another compatible package manager)
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in a browser. Changes to files in `app/` are reflected during development.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Next.js development server |
+| `npm run build` | Create an optimized production build |
+| `npm run start` | Serve the production build; run `npm run build` first |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Updating site content
 
-To learn more about Next.js, take a look at the following resources:
+- **Menu categories, item descriptions, labels, and prices:** edit `app/lib/menu.ts`.
+- **Menu item images:** update the `menuImages` mapping in `app/menu/page.tsx`. The current menu cards use Unsplash image URLs.
+- **Home page hero slides:** edit the `slides` data in `app/components/site.tsx`.
+- **Branch addresses and contact details:** edit `app/contact/page.tsx`; the shared footer is in `app/components/site.tsx`.
+- **Typography, colors, layout, and breakpoints:** edit `app/globals.css`.
+- **Page titles and descriptions:** edit the route’s `metadata` export or the shared metadata in `app/layout.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The `main/` folder contains reference photos of the printed menu. These are source references and are not currently rendered as page images.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Images and external services
 
-## Deploy on Vercel
+Menu cards and featured food visuals currently reference images hosted by Unsplash. Those images require an internet connection to load. If replacing them with local images, place the files in `public/` and update the corresponding image paths.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site currently provides phone and WhatsApp contact links; it does not include online ordering, payment processing, a database, or a content-management system.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Production build and deployment
+
+Check the production build locally:
+
+```bash
+npm run build
+npm run start
+```
+
+The project can be deployed to a Next.js-compatible host such as [Vercel](https://vercel.com/). See the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for deployment options and configuration details.
